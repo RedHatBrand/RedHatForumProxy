@@ -14,5 +14,6 @@
   "/sko-staging/latam": "http://d3s84xo5cmutkt.cloudfront.net/renders/attachments/000/010/071/original/latest_index.html",
   "/sko-staging/apac": "http://d3s84xo5cmutkt.cloudfront.net/renders/attachments/000/009/290/original/latest_index.html",
   "/sko-staging/na": "http://d3s84xo5cmutkt.cloudfront.net/renders/attachments/000/009/990/original/latest_index.html",
-  "/sko-staging/emea": "http://d3s84xo5cmutkt.cloudfront.net/renders/attachments/000/009/254/original/latest_index.html"
+  "/sko-staging/emea": "http://d3s84xo5cmutkt.cloudfront.net/renders/attachments/000/009/254/original/latest_index.html",
+  "/sko/emea": "http://d3s84xo5cmutkt.cloudfront.net/renders/attachments/000/009/254/original/latest_index.html"
 }
