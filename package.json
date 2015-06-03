@@ -1,12 +1,12 @@
 {
- "name": "redhat-proxy-events",
- "version": "0.0.1",
- "description": "Proxies to cloudfront",
- "main": "proxy.js",
- "author": "NetEngine",
- "license": "BSD-2-Clause",
- "dependencies": {
-   "superagent": "~0.18.0",
-   "express": "~4.4.3"
- }
+  "name": "redhat-proxy-events",
+  "version": "0.0.1",
+  "description": "Proxies to cloudfront",
+  "main": "proxy.js",
+  "author": "NetEngine",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "express": "~4.4.3",
+    "superagent": "~1.2.0"
+  }
 }

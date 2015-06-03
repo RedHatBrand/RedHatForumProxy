@@ -6,9 +6,14 @@ var express = require('express'),
     config  = require('./config');
 
 app.get('*', function(req, res){
-  var cloudfrontUrl = config[req.url];
+  var endpoint = config[req.url];
 
-  if (cloudfrontUrl === undefined) {
+  if (req.url === '/') {
+    res.redirect('http://redhat.com/events');
+    return;
+  }
+
+  if (endpoint === undefined) {
     res.redirect('/forum');
     return;
   }
@@ -16,7 +21,7 @@ app.get('*', function(req, res){
   res.writeHead(200, { 'Content-Type' : 'text/html' });
 
   request
-    .get(cloudfrontUrl)
+    .get(endpoint)
     .pipe(res);
 });
 
