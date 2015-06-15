@@ -13,6 +13,11 @@ app.get('*', function(req, res){
     return;
   }
 
+  if (endpoint === '/forum') {
+    res.redirect('http://www.redhat.com/en/about/events?f0=field_event_type%3A8101&rset1_format=list');
+    return;
+  }
+
   if (endpoint === undefined) {
     res.redirect('/forum');
     return;
