@@ -14,7 +14,7 @@ app.get('*', function(req, res){
   }
 
   if (req.url === '/forum') {
-    res.redirect('http://www.redhat.com/en/about/events?f0=field_event_type%3A8101&rset1_format=list');
+    res.redirect('http://www.redhat.com/en/about/events?f0=field_event_type%3A8101&rset1_format=list&f0=field_event_type%3A8101');
     return;
   }
 
