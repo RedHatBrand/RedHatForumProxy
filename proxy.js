@@ -3,27 +3,31 @@
 var express = require('express'),
     request = require('superagent'),
     app     = express(),
-    config  = require('./config');
+    config  = require('./config'),
+    url     = require('url');
 
 app.get('*', function(req, res){
-  if (req.url === '/' || !req.url) {
+  var reqUrl = url.parse(req.url).pathname;
+  var queryString = url.parse(req.url).search;
+
+  if (reqUrl === '/' || !reqUrl) {
     res.redirect('http://redhat.com/events');
     return;
   }
 
-  if (req.url === '/forum' || req.url === '/forum/') {
+  if (reqUrl === '/forum' || reqUrl === '/forum/') {
     res.redirect('http://www.redhat.com/en/about/events?f[0]=field_event_type%3A8101&rset1_format=list');
     return;
   }
 
-  var reqBase  = req.url.split('/').slice(0, 3).join('/');
+  var reqBase  = reqUrl.split('/').slice(0, 3).join('/');
 
-  if (reqBase === req.url) {
-    res.redirect(reqBase + '/')
+  if (reqBase === reqUrl) {
+    res.redirect(reqBase + '/' + queryString)
     return;
   }
 
-  var resource = req.url.split('/').slice(3).join('/');
+  var resource = reqUrl.split('/').slice(3).join('/');
   var endFull  = config[reqBase];
 
   if (endFull === undefined) {
