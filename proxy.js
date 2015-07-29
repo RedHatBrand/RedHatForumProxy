@@ -23,7 +23,7 @@ app.get('*', function(req, res){
   var reqBase  = reqUrl.split('/').slice(0, 3).join('/');
 
   if (reqBase === reqUrl) {
-    res.redirect(reqBase + '/' + queryString)
+    res.redirect(reqBase + '/' + (queryString ? queryString : ''))
     return;
   }
 
