@@ -6,27 +6,45 @@ var express = require('express'),
     config  = require('./config');
 
 app.get('*', function(req, res){
-  var endpoint = config[req.url];
-
-  if (req.url === '/') {
+  if (req.url === '/' || !req.url) {
     res.redirect('http://redhat.com/events');
     return;
   }
 
-  if (req.url === '/forum') {
+  if (req.url === '/forum' || req.url === '/forum/') {
     res.redirect('http://www.redhat.com/en/about/events?f[0]=field_event_type%3A8101&rset1_format=list');
     return;
   }
 
-  if (endpoint === undefined) {
+  var reqBase  = req.url.split('/').slice(0, 3).join('/');
+
+  if (reqBase === req.url) {
+    res.redirect(reqBase + '/')
+    return;
+  }
+
+  var resource = req.url.split('/').slice(3).join('/');
+  var endFull  = config[reqBase];
+
+  if (endFull === undefined) {
     res.redirect('/forum');
     return;
   }
 
-  res.writeHead(200, { 'Content-Type' : 'text/html' });
+  var endBase  = (function () {
+    var parts = endFull.split('/')
+    return parts.slice(0, parts.length - 1).join('/')
+  })();
+
+  var resourceUrl;
+  if (resource) {
+    resourceUrl = [endBase, resource].join('/')
+  } else {
+    resourceUrl = endFull
+  }
 
   request
-    .get(endpoint)
+    .get(resourceUrl)
     .pipe(res);
 });
 
