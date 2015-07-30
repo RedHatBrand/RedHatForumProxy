@@ -20,7 +20,9 @@ app.get('*', function(req, res){
     return;
   }
 
-  var reqBase  = reqUrl.split('/').slice(0, 3).join('/');
+  var reqBase = '/' + reqUrl.split('/').slice(0, 3).filter(function (elem) {
+    return !!elem
+  }).join('/');
 
   if (reqBase === reqUrl) {
     res.redirect(reqBase + '/' + (queryString ? queryString : ''))
