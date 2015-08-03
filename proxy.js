@@ -49,7 +49,8 @@ app.get('*', function(req, res){
     resourceUrl = endFull
   }
 
-  var contentType = req.headers.accept.split(', ')[0]
+  var accept = req.headers.accept
+  var contentType = accept && accept.split(',')[0].trim()
   if (contentType) {
     res.setHeader('content-type', contentType)
   }
