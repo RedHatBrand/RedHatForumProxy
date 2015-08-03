@@ -49,6 +49,11 @@ app.get('*', function(req, res){
     resourceUrl = endFull
   }
 
+  var contentType = req.headers.accept.split(', ')[0]
+  if (contentType) {
+    res.setHeader('content-type', contentType)
+  }
+
   request
     .get(resourceUrl)
     .pipe(res);
