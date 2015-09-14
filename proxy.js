@@ -10,13 +10,20 @@ app.get('*', function(req, res){
   var reqUrl = url.parse(req.url).pathname;
   var queryString = url.parse(req.url).search;
 
-  if (reqUrl === '/' || !reqUrl) {
-    res.redirect('http://redhat.com/events');
-    return;
-  }
+  console.log(reqUrl)
 
   if (reqUrl === '/forum' || reqUrl === '/forum/') {
     res.redirect('http://www.redhat.com/en/about/events?f[0]=field_event_type%3A8101&rset1_format=list');
+    return;
+  }
+
+  if (reqUrl === '/forum/tokyo' || reqUrl === '/forum/tokyo/') {
+    res.redirect('https://redhatforum.jp/' + (queryString ? queryString : ''));
+    return;
+  }
+
+  if (reqUrl === '/' || !reqUrl) {
+    res.redirect('http://redhat.com/events');
     return;
   }
 
